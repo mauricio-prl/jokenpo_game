@@ -1,6 +1,10 @@
 class Jokenpo
-  AVAILABLE_MOVES = %w[rock paper scissors].freeze
-  WINNING_MOVES = { 'rock' => 'scissors', 'paper' => 'rock', 'scissors' => 'paper' }.freeze
+  AVAILABLE_MOVES = %w[rock paper scissors spock lizard].freeze
+  WINNING_MOVES = { 'rock' => ['lizard', 'scissors'],
+                    'paper' => ['rock', 'spock'],
+                    'scissors' => ['lizard', 'paper'],
+                    'lizard' => ['spock', 'paper'],
+                    'spock' => ['scissors', 'rock'] }.freeze
 
   def self.play(...) = new(...).play
 
@@ -14,7 +18,7 @@ class Jokenpo
 
     return :draw if input == machine
 
-    WINNING_MOVES[input] == machine ? :win : :lose
+    WINNING_MOVES[input].include?(machine) ? :win : :lose
   end
 
   private
