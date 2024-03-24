@@ -1,10 +1,10 @@
 class Jokenpo
   AVAILABLE_MOVES = %w[rock paper scissors spock lizard].freeze
-  WINNING_MOVES = { 'rock' => ['lizard', 'scissors'],
-                    'paper' => ['rock', 'spock'],
-                    'scissors' => ['lizard', 'paper'],
-                    'lizard' => ['spock', 'paper'],
-                    'spock' => ['scissors', 'rock'] }.freeze
+  WINNING_MOVES = { 'rock' => %w[lizard scissors],
+                    'paper' => %w[rock spock],
+                    'scissors' => %w[lizard paper],
+                    'lizard' => %w[spock paper],
+                    'spock' => %w[scissors rock] }.freeze
 
   def self.play(...) = new(...).play
 
