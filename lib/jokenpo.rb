@@ -1,5 +1,4 @@
 class Jokenpo
-  AVAILABLE_MOVES = %w[rock paper scissors spock lizard].freeze
   WINNING_MOVES = { 'rock' => %w[lizard scissors],
                     'paper' => %w[rock spock],
                     'scissors' => %w[lizard paper],
@@ -8,7 +7,7 @@ class Jokenpo
 
   def self.play(...) = new(...).play
 
-  def initialize(input, machine = AVAILABLE_MOVES.sample)
+  def initialize(input, machine = available_moves.sample)
     @input = input
     @machine = machine
   end
@@ -25,8 +24,10 @@ class Jokenpo
 
   attr_reader :input, :machine
 
+  def available_moves = WINNING_MOVES.keys
+
   def validate!
-    return if [input, machine].all? { |move| AVAILABLE_MOVES.include?(move) }
+    return if [input, machine].all? { |move| available_moves.include?(move) }
 
     raise ArgumentError, "Invalid move: #{input} or #{machine}"
   end
